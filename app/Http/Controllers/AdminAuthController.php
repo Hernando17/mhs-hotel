@@ -17,6 +17,7 @@ class AdminAuthController extends Controller
 
     public function authenticate(Request $request)
     {
+        $remember_me = $request->remember_me ? true : false;
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
@@ -25,7 +26,7 @@ class AdminAuthController extends Controller
             'password.required' => 'Password tidak boleh kosong.'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember_me)) {
             $request->session()->regenerate();
             return response()->json(['status' => 'success'], 200);
         }
