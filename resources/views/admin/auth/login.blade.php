@@ -6,8 +6,6 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <h1 class="auth-title">Login</h1>
-                    <p class="auth-subtitle mb-5">Masuk dengan data Anda yang Anda masukkan saat pendaftaran.</p>
-
                     <form class="form-login">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
