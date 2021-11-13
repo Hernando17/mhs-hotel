@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminAdminController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\DashboardController;
@@ -37,4 +38,7 @@ Route::middleware('admin.guest')->group(function () {
 
 Route::middleware(['admin.auth', 'can:isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/admin/admin', [AdminAdminController::class, 'index'])->name('admin.admin');
+    Route::post('/admin/admin/store', [AdminAdminController::class, 'store'])->name('admin.admin.store');
 });

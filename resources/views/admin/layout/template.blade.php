@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="{{ asset('plugins/mazer/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/mazer/vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/mazer/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/mazer/vendors/toastify/toastify.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/mazer/vendors/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome/css/all.min.css') }}">
 </head>
 
 <body>
@@ -28,9 +30,9 @@
             </header>
 
             @yield('admin-content')
-        </div>
 
-        @include('admin.layout.footer')
+            @include('admin.layout.footer')
+        </div>
     </div>
 
     <!-- js -->
@@ -39,7 +41,10 @@
     <script src="{{ asset('plugins/mazer/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('plugins/mazer/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('plugins/mazer/js/main.js') }}"></script>
+    <script src="{{ asset('plugins/mazer/vendors/toastify/toastify.js') }}"></script>
     <script src="{{ asset('plugins/mazer/vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('plugins/fontawesome/js/all.min.js') }}"></script>
+    @stack('scripts')
     <script type="text/javascript">
         $('.btn-logout').on('click', function() {
             Swal.fire({

@@ -41,11 +41,11 @@
                     <a role="button" class='sidebar-link'>
                         <i class="bi bi-people-fill"></i><span>Pengguna</span>
                     </a>
-                    <ul class="submenu">
-                        <li class="submenu-item">
+                    <ul class="submenu {{ Request::is('admin/admin*', 'admin/tamu*') ? 'active' : '' }}">
+                        <li class="submenu-item {{ Request::is('admin/admin*') ? 'active' : '' }}">
                             <a href="/admin/admin">Admin</a>
                         </li>
-                        <li class="submenu-item">
+                        <li class="submenu-item {{ Request::is('admin/tamu*') ? 'active' : '' }}">
                             <a href="/admin/tamu">Tamu</a>
                         </li>
                     </ul>
