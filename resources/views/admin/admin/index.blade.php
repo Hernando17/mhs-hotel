@@ -95,13 +95,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">Password</label>
-                                            <input type="text" class="form-control" name="password">
+                                            <input type="password" class="form-control" name="password">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label class="form-label">Confirm Password</label>
-                                            <input type="text" class="form-control" name="confirm_password">
+                                            <input type="password" class="form-control" name="confirm_password">
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,17 @@
                             data: formData,
                             beforeSend: function(e) {},
                             complete: function(e) {},
-                            success: function(res) {},
+                            success: function(res) {
+                                Toastify({
+                                    text: res.message,
+                                    duration: 3000,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    backgroundColor: "#44C640",
+                                }).showToast();
+                                window.location.reload();
+                            },
                             error: function(res) {
                                 $.each(res.responseJSON.errors, function(id, error) {
                                     Toastify({
@@ -161,6 +171,14 @@
                         });
                     }
                 });
+            });
+
+            $('input[name="photo"]').change(function() {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    $('.img-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
             });
         </script>
     @endpush

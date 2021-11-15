@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminAdminController extends Controller
 {
@@ -26,5 +28,15 @@ class AdminAdminController extends Controller
             'confirm_password' => ['required', 'same:password'],
             'photo' => ['image', 'file', 'max:2048']
         ]);
+
+        if ($request->file('photo')) {
+            $fileName = 'mhs-hotel-' . time() . '.' . $request->file('photo')->extension();
+            Storage::putFileAs('admin-photo', $request->file('photo'), $fileName);
+            $validatedData['photo'] = $fileName;
+        }
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['is_admin'] = true;
+        User::create($validatedData);
+        return response()->json(['message' => 'Data berhasil ditambah!'], 200);
     }
 }
